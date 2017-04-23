@@ -1,0 +1,57 @@
+<body style="background-color:oldlace;" >
+
+
+<p align="right">
+<b><%=link_to "HOME", 'http://localhost:3000/users/index' %></b>
+</p>
+
+
+
+
+<% for photo in @all_photos %>
+
+    <%= photo.date_time %>
+    <br /><br/>
+    <%= image_tag photo.file_name, style: 'height: 300px; width: 300px' %>
+
+
+    <table class="oddEven" cellpadding="15">
+      <tr class="header">
+        <% @comments=@all_comments.where(:photo_id =>photo.id) %>
+        <td><b>User</b></td>
+        <td><b>Comment</b></td>
+        <td><b>Commented at</b></td>
+      </tr>
+
+      <% if @comments.count !=0 %>
+          <% @comments.each do |comment| %>
+          <tr class="<%= cycle('even', 'odd') %>">
+
+            <td><%= link_to comment.user.first_name, image_path(photo.file_name),  :target => "_blank" %> </td>
+            <td><%= comment.comment_text %> </td>
+            <td><%=comment.created_at %></td>
+          </tr>
+
+          <% end %>
+          <%else %>
+          <tr>
+          <td> No comments</td>
+          </tr>
+      <%end%>
+
+
+
+    </table>
+
+    <br/> <br/>
+    <br/> <br/>
+
+
+    
+
+
+
+
+
+
+<%end%>

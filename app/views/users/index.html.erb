@@ -1,0 +1,32 @@
+<body style="background-color:oldlace;" >
+ <%@title = "PhotoSite User List"%>
+</body>
+<h1><b>PhotoSite User List</b></h1>
+<table class="oddEven" cellpadding="8">
+  <tr class="header">
+    <td><b>User</b></td>
+    <td><b>Name</b></td>
+  </tr>
+
+  <% for user in @all_users %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td><%= user.id %> </td>
+       <td><%= link_to user.first_name + ' ' + user.last_name, get_photo_by_user_path(user.id) %> </td>
+      </tr>
+  <% end %>
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
